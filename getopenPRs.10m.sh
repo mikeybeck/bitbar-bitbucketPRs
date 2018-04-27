@@ -29,7 +29,7 @@ prs=$(echo $response | jq '(.size|tostring) + " PRs"')
 
 echo $prs | tr -d '"'
 echo "---"
-echo "View all PRs | href=https://bitbucket.org/blasttechnologies/arena/pull-requests/"
+echo "View all PRs | href=https://bitbucket.org/$REPO_OWNER/$REPO_SLUG/pull-requests/"
 echo "---"
 
 echo $json | jq '.author + " - " + .title + " | href=" + .link' | tr -d '"'
