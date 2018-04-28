@@ -3,12 +3,12 @@
 # shellcheck disable=SC2154
 # shellcheck source=/dev/null
 
-# <bitbar.title>BB PRs</bitbar.title>
+# <bitbar.title>Bitbucket Pull Requests</bitbar.title>
 # <bitbar.version>0.1</bitbar.version>
 # <bitbar.author>Mikey Beck</bitbar.author>
 # <bitbar.author.github>mikeybeck</bitbar.author.github>
-# <bitbar.desc>Shows bitbucket PR stuff</bitbar.desc>
-# <bitbar.image></bitbar.image>
+# <bitbar.desc>Shows Bitbucket open pull request information</bitbar.desc>
+# <bitbar.image>https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png</bitbar.image>
 # <bitbar.dependencies>jq</bitbar.dependencies>
 # <bitbar.abouturl></bitbar.abouturl>
 
