@@ -21,5 +21,10 @@ These are some settings that you will need to edit at the top of the `getopenPRs
 * `REPO_OWNER`- Owner of the Bitbucket repository
 * `REPO_SLUG`- Slug of the Bitbucket repository
 
+### TODO
+
+- [ ] Display build status for PR
+- [ ] Display number of approvals
+
 ## License
 MIT. See the License file for more info.

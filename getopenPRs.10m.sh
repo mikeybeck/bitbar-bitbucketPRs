@@ -10,7 +10,7 @@
 # <bitbar.desc>Shows Bitbucket open pull request information</bitbar.desc>
 # <bitbar.image>https://raw.githubusercontent.com/mikeybeck/bitbar-bitbucketPRs/master/screenshot.png</bitbar.image>
 # <bitbar.dependencies>jq</bitbar.dependencies>
-# <bitbar.abouturl></bitbar.abouturl>
+# <bitbar.abouturl>https://github.com/mikeybeck/bitbar-bitbucketPRs</bitbar.abouturl>
 
 # Relevant documentation for BitBucket: http://web.archive.org/web/20150530151816/https://confluence.atlassian.com/display/BITBUCKET/pullrequests+Resource#pullrequests
 
@@ -29,7 +29,7 @@ prs=$(echo $response | jq '(.size|tostring) + " PRs"')
 
 echo $prs | tr -d '"'
 echo "---"
-echo "View all PRs | href=https://bitbucket.org/$REPO_OWNER/$REPO_SLUG/pull-requests/"
+echo "View all pull requests | href=https://bitbucket.org/$REPO_OWNER/$REPO_SLUG/pull-requests/"
 echo "---"
 
 echo $json | jq '.author + " - " + .title + " | href=" + .link' | tr -d '"'
