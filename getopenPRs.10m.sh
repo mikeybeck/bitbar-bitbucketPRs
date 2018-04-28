@@ -4,7 +4,7 @@
 # shellcheck source=/dev/null
 
 # <bitbar.title>Bitbucket Pull Requests</bitbar.title>
-# <bitbar.version>0.1</bitbar.version>
+# <bitbar.version>1.0</bitbar.version>
 # <bitbar.author>Mikey Beck</bitbar.author>
 # <bitbar.author.github>mikeybeck</bitbar.author.github>
 # <bitbar.desc>Shows Bitbucket open pull request information</bitbar.desc>
