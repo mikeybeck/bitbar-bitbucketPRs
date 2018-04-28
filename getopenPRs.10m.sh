@@ -24,7 +24,7 @@ REPO_SLUG=
 export PATH="/usr/local/bin:/usr/bin:$PATH"
 
 response=$(curl -s -X GET --user $USERNAME:$PASSWORD "https://bitbucket.org/api/2.0/repositories/$REPO_OWNER/$REPO_SLUG/pullrequests/")
-json=$(echo $response | jq '.values[] | {title: .title, author: .author.display_name, link: .links.html.href}')
+json=$(echo $response | jq '.values[] | {title: .title, author: .author.display_name, link: .links.html.href, status: .links.statuses.href}')
 prs=$(echo $response | jq '(.size|tostring) + " PRs"')
 
 echo $prs | tr -d '"'
@@ -32,4 +32,17 @@ echo "---"
 echo "View all pull requests | href=https://bitbucket.org/$REPO_OWNER/$REPO_SLUG/pull-requests/"
 echo "---"
 
-echo $json | jq '.author + " - " + .title + " | href=" + .link' | tr -d '"'
+for pr in $(echo "${json}" | jq -r '.[] | @base64'); do
+    _jq() {
+     echo ${pr} | base64 --decode | jq -r ${1}
+    }
+
+   build_state=$(curl -s -X GET --user $USERNAME:$PASSWORD $(_jq '.status') | jq -r '.values[].state')
+   colour="red"
+   if [[ $build_state == "SUCCESSFUL" ]]; then
+		colour="green"
+   fi
+
+   echo $(_jq '.author') '-' $(_jq '.title') "| href=$(_jq '.link') color=$colour"
+
+done
