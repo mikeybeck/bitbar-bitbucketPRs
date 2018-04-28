@@ -23,10 +23,11 @@ These are some settings that you will need to edit at the top of the `getopenPRs
 
 ### TODO
 
-- [x] Display build status for PR (red & green colour coded - at the cost of speed.  I'll make this optional)
-- [ ] Display number of approvals
+- [x] Display build status for PR (red & green colour coded - at the cost of speed.)
+- [x] Display number of approvals (also slows things down due to extra http call.)
 - [ ] Display number of comments
-- [ ] Make build status display optional
+- [ ] Make build status display / number of approvals optional
+- [ ] Use icons to indicate comments / approvals
 
 ## License
 MIT. See the License file for more info.
