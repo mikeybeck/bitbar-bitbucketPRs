@@ -4,6 +4,15 @@ A plugin for [BitBar](https://github.com/matryer/bitbar) that shows open pull re
 
 ![](/screenshot.png?raw=true)
 
+Shows information about all open pull requests for any Bitbucket repository you have access to.
+
+#### What is displayed?
+- Name of PR submitter
+- Title of PR
+- Build status
+- Number of approvals
+- Number of comments
+
 ## Requirements
 * [jq](https://stedolan.github.io/jq/)
 
@@ -25,9 +34,10 @@ These are some settings that you will need to edit at the top of the `getopenPRs
 
 - [x] Display build status for PR (red & green colour coded - at the cost of speed.)
 - [x] Display number of approvals (also slows things down due to extra http call.)
-- [ ] Display number of comments
-- [ ] Make build status display / number of approvals optional
-- [ ] Use icons to indicate comments / approvals
+- [x] Display number of comments
+- [ ] Make build status display / number of approvals / number of comments optional
+- [x] Use icons to indicate comments / approvals
+- [ ] Put one user's (i.e. your own) PRs into a separate section
 
 ## License
 MIT. See the License file for more info.
