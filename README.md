@@ -12,6 +12,7 @@ Shows information about all open pull requests for any Bitbucket repository you 
 - Build status
 - Number of approvals
 - Number of comments
+Each line is also a link that will open the relevant pull request when clicked.
 
 ##### Each pull request is colour coded: 
 - Red: failed build
