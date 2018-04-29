@@ -13,6 +13,11 @@ Shows information about all open pull requests for any Bitbucket repository you 
 - Number of approvals
 - Number of comments
 
+##### Each pull request is colour coded: 
+- Red: failed build
+- Black: build passed but not enough approvals
+- Green: build passed and a sufficient number of approvals
+
 ## Requirements
 * [jq](https://stedolan.github.io/jq/)
 
