@@ -26,8 +26,6 @@ NUM_APPROVALS_REQ=2  # Number of approvals required for pull request
 export PATH="/usr/local/bin:/usr/bin:$PATH"
 
 response=$(curl -s -X GET --user $USERNAME:$PASSWORD "https://bitbucket.org/api/2.0/repositories/$REPO_OWNER/$REPO_SLUG/pullrequests/")
-
-response=$(curl -s -X GET --user $USERNAME:$PASSWORD "https://bitbucket.org/api/2.0/repositories/$REPO_OWNER/$REPO_SLUG/pullrequests/")
 json=$(echo $response | jq -r -c '[.values[] | {title: .title, author: .author.display_name, num_comments: .comment_count, link_html: .links.html.href, link_status: .links.statuses.href, link_self: .links.self.href}]')
 prs=$(echo $response | jq '(.size|tostring) + " PRs"')
 
