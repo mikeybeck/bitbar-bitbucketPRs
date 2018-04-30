@@ -12,6 +12,7 @@ Shows information about all open pull requests for any Bitbucket repository you 
 - Build status
 - Number of approvals
 - Number of comments
+- Whether I (you) have approved the PR
 
 Each line is also a link that will open the relevant pull request when clicked.
 
@@ -44,7 +45,9 @@ These are some settings that you will need to edit at the top of the `getopenPRs
 - [x] Display number of comments
 - [ ] Make build status display / number of approvals / number of comments optional
 - [x] Use icons to indicate comments / approvals
-- [ ] Put one user's (i.e. your own) PRs into a separate section
+- [ ] Put my PRs into a separate section
+- [x] Indicate which PRs I have/haven't approved
+- [ ] Update screenshot
 
 ## License
 MIT. See the License file for more info.

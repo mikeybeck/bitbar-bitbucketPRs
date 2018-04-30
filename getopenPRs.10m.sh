@@ -46,12 +46,19 @@ for pr in $(echo "${json}" | jq -r '.[] | @base64'); do
    num_approvals=$(echo $self | jq -r '[select(.participants[].approved)] | length')
    colour="red"
    if [[ $build_state == "SUCCESSFUL" ]]; then
-		colour="green" # Colour to show if PR is good to go (approved & build passed)
-		if [ "$num_approvals" -lt "$NUM_APPROVALS_REQ" ]; then
-			colour="black" # Colour to show if PR build passed but not approved
-		fi
+    colour="green" # Colour to show if PR is good to go (approved & build passed)
+    if [ "$num_approvals" -lt "$NUM_APPROVALS_REQ" ]; then
+      colour="black" # Colour to show if PR build passed but not approved
+    fi
+   fi
+  
+   approved_by_me=$(echo $self | jq -r --arg USERNAME "$USERNAME" '.participants[] | select(.user.username == $USERNAME) | .approved')
+   if [[ $approved_by_me == "true" ]]; then
+    approved_by_me=":heavy_check_mark:"
+   else
+    approved_by_me="-"
    fi
 
-   echo $(_jq '.author') '-' $(_jq '.title') " ┃ :heavy_check_mark: $num_approvals ┃ :speech_balloon: $(_jq '.num_comments')" "| href=$(_jq '.link_html') color=$colour"
+   echo "$approved_by_me " $(_jq '.author') '-' $(_jq '.title') " ┃ :heavy_check_mark: $num_approvals ┃ :speech_balloon: $(_jq '.num_comments')" "| href=$(_jq '.link_html') color=$colour"
 
 done
