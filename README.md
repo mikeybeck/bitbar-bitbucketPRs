@@ -7,12 +7,14 @@ A plugin for [BitBar](https://github.com/matryer/bitbar) that shows open pull re
 Shows information about all open pull requests for any Bitbucket repository you have access to.
 
 #### What is displayed?
+- Number of open PRs (in menu bar)
 - Name of PR submitter
 - Title of PR
 - Build status
 - Number of approvals
 - Number of comments
-- Whether I (you) have approved the PR
+- Whether I have approved the PR
+- Number of open PRs unapproved by me (cycles in menu bar)
 
 Each line is also a link that will open the relevant pull request when clicked.
 

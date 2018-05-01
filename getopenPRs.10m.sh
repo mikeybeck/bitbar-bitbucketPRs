@@ -27,12 +27,10 @@ export PATH="/usr/local/bin:/usr/bin:$PATH"
 
 response=$(curl -s -X GET --user $USERNAME:$PASSWORD "https://bitbucket.org/api/2.0/repositories/$REPO_OWNER/$REPO_SLUG/pullrequests/")
 json=$(echo $response | jq -r -c '[.values[] | {title: .title, author: .author.display_name, num_comments: .comment_count, link_html: .links.html.href, link_status: .links.statuses.href, link_self: .links.self.href}]')
-prs=$(echo $response | jq '(.size|tostring) + " PRs"')
+prs=$(echo $response | jq -r -c '(.size|tostring)')
 
-echo $prs | tr -d '"'
-echo "---"
-echo "View all open pull requests | href=https://bitbucket.org/$REPO_OWNER/$REPO_SLUG/pull-requests/"
-echo "---"
+num_approved_by_me=0
+declare -a lines
 
 for pr in $(echo "${json}" | jq -r '.[] | @base64'); do
     _jq() {
@@ -53,10 +51,28 @@ for pr in $(echo "${json}" | jq -r '.[] | @base64'); do
    approved_by_me=$(echo $self | jq -r --arg USERNAME "$USERNAME" '.participants[] | select(.user.username == $USERNAME) | .approved')
    if [[ $approved_by_me == "true" ]]; then
     approved_by_me=":heavy_check_mark:"
+    ((num_approved_by_me++))
    else
     approved_by_me="-"
    fi
 
-   echo "$approved_by_me " $(_jq '.author') '-' $(_jq '.title') " ┃ :heavy_check_mark: $num_approvals ┃ :speech_balloon: $(_jq '.num_comments')" "| href=$(_jq '.link_html') color=$colour"
+  line=$(echo "$approved_by_me " $(_jq '.author') '-' $(_jq '.title') " ┃ :heavy_check_mark: $num_approvals ┃ :speech_balloon: $(_jq '.num_comments')" "| href=$(_jq '.link_html') color=$colour")
+  lines+=("$line")
 
+done
+
+# Print everything out
+
+num_unapproved_by_me=$((prs - num_approved_by_me))
+echo $prs " PRs | dropdown=false" # Display number of PRs in menu bar
+if [[ $num_unapproved_by_me != 0 ]]; then
+  echo "($num_unapproved_by_me unapproved) | dropdown=false" # Cycle number of PRs not approved by me in menu bar, if > 0
+fi
+echo "---"
+echo "View all open pull requests | href=https://bitbucket.org/$REPO_OWNER/$REPO_SLUG/pull-requests/"
+echo "---"
+
+for line in "${lines[@]}"
+do
+  echo "$line" # Display open PRs in dropdown
 done
