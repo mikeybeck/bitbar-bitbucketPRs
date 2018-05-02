@@ -49,6 +49,7 @@ These are some settings that you will need to edit at the top of the `getopenPRs
 - [x] Use icons to indicate comments / approvals
 - [ ] Put my PRs into a separate section
 - [x] Indicate which PRs I have/haven't approved
+- [ ] Don't count own PRs in number unapproved
 - [ ] Update screenshot
 
 ## License
