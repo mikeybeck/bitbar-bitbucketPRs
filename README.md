@@ -1,5 +1,7 @@
 # Bitbar Bitbucket Pull Requests plugin
 
+Note:  I have abandoned this project in favour of Hammerspoon.  You can find my Hammerspoon config and Bitbucket Pull Requests module [here](https://github.com/mikeybeck/hammerspoon-config/)
+
 A plugin for [BitBar](https://github.com/matryer/bitbar) that shows open pull requests for your [Bitbucket](https://bitbucket.org/) repository.
 
 ![](/screenshot.png?raw=true)
